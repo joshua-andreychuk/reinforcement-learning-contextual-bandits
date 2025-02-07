@@ -51,13 +51,20 @@ To showcase how contextual bandit algorithms can solve decision-making problems 
 
 ---
 
-## Algorithms Implemented
+### **Algorithms Implemented**
 
-- **Fixed-Dose Baseline**: Assigns a static dose or recommendation.
-- **Clinical Linear Model**: Incorporates patient features to predict outcomes.
-- **Disjoint Linear UCB (LinUCB)**: Balances exploration and exploitation by estimating upper confidence bounds.
-- **Thompson Sampling**: Utilizes Bayesian inference to dynamically update predictions.
-- **ε-Greedy**: Randomly explores new options while mostly exploiting known best choices.
+#### **Warfarin Dose Prediction**
+- **Fixed-Dose Baseline**: Assigns a static dose to all patients.
+- **Clinical Linear Model**: Uses patient features (age, weight, race, etc.) to predict warfarin dosage.
+- **Disjoint Linear UCB (LinUCB)**: Balances exploration and exploitation by estimating upper confidence bounds for optimal dosing.
+- **Thompson Sampling**: Uses Bayesian inference to dynamically update dosage predictions.
+- **ε-Greedy**: Randomly explores new dose options while primarily exploiting known best choices.
+
+#### **Recommendation System**
+- **Disjoint Linear UCB (LinUCB-None)**: Adapts to user preferences and balances exploration and exploitation for better recommendations.
+- **Popularity-Based Strategy**: Creates new arms (content/videos) based on the most popular recent arms.
+- **Corrective Strategy**: Generates new arms to correct recommendation errors by learning from past user interactions.
+- **Counterfactual Optimization Strategy**: Simulates new arms that could have yielded better outcomes in past recommendations.
 
 ---
 
