@@ -13,6 +13,18 @@ The project highlights various reinforcement learning techniques for decision-ma
 
 ---
 
+# How to Use the Project
+
+Everything you need is included in the `reinforcement_learning.zip` file:
+- Fully functioning project
+- Environment setup (`environment.yml`)
+- Scripts and Jupyter notebooks
+- Datasets and outputs
+
+Simply download and extract the zip file to get started!
+
+---
+
 ## Project Overview
 
 ### Objective
