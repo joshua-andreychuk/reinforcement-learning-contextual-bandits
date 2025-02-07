@@ -6,11 +6,6 @@ This project demonstrates the application of **multi-armed bandit algorithms** i
 1. **Personalized content recommendations** for users on platforms like YouTube.
 2. **Optimal warfarin dose prediction** based on patient data to improve medical outcomes.
 
-The project highlights various reinforcement learning techniques for decision-making under uncertainty, including:
-- Upper Confidence Bound (UCB)
-- Thompson Sampling
-- ε-Greedy
-
 ---
 
 # How to Use the Project
