@@ -63,6 +63,79 @@ To showcase how contextual bandit algorithms can solve decision-making problems 
 
 ---
 
+### **Performance Results**
+
+#### **Recommendation System**
+
+1. **Fraction Incorrect vs. Users Seen** (First Graph):  
+   - The **red curve (Counterfactual)** achieves the lowest error rate, improving steadily as more users are seen.
+   - The **blue curve (None)** steadily improves with users seen, eventually outperforming both **green (Corrective)** and **orange (Popular)**.
+   - **Popular** and **Corrective** are **exactly identical**, with both curves overlapping entirely and converging to a higher error rate than **None** and **Counterfactual**.
+
+2. **Total Fraction Correct vs. Number of Arms (`K`)** (Second Graph):  
+   - The **red curve (Counterfactual)** maintains the highest correct fraction across all values of `K`.
+   - The **blue curve (None)** steadily improves with more arms seen, maintaining better performance than **Popular** and **Corrective**.
+   - **Popular** and **Corrective** are **exactly identical**, showing no variation in performance even as the number of arms increases.
+
+---
+
+### **What Does This Mean?**
+
+1. **Counterfactual Optimization**:
+   - This strategy is highly effective because it simulates alternative outcomes to guide learning. It helps the model continuously optimize based on what "could have been better," leading to significantly improved performance in dynamic environments with evolving user interactions.
+
+2. **None Strategy**:
+   - Surprisingly, the **None** strategy (no new arms added) performs better than both **Popular** and **Corrective**.  
+   - This suggests that introducing new arms can create unnecessary exploration noise or instability, limiting the algorithm’s ability to refine its understanding of existing arms.
+
+3. **Identical Performance of Popular and Corrective**:
+   - The fact that **Popular** and **Corrective** are indistinguishable suggests that their implementations or the underlying data they rely on might be structured in a similar way. Neither approach introduces any significant advantage over the other in this scenario.
+
+4. **Convergence at Higher K**:
+   - As the number of arms increases, all strategies show signs of performance convergence. This implies that with more arms, the performance differences between strategies narrow, although **Counterfactual** continues to maintain an edge.
+
+---
+
+### **Performance Results**
+
+#### **Warfarin Dose Prediction**
+
+1. **Fixed Strategy**:
+   - **Total Fraction Correct:** Consistently around 0.61  
+   - **Performance Insight:** The **Fixed** strategy has deterministic behavior and stabilizes at the lowest correct fraction, indicating its lack of adaptability to new data or patient characteristics.
+
+2. **Clinical Model**:
+   - **Total Fraction Correct:** Consistently around 0.64  
+   - **Performance Insight:** The **Clinical** model is also deterministic and produces the same result across multiple runs. It leverages static patient-specific features to achieve better performance than **Fixed**, but without exploration, its performance is capped.
+
+3. **LinUCB**:
+   - **Total Fraction Correct:** Ranges between 0.64 and 0.66 across runs  
+   - **Performance Insight:** **LinUCB** is a stochastic algorithm with random exploration, resulting in slight variations in total fraction correct across different runs. It outperforms both **Fixed** and **Clinical** through dynamic learning and confidence-bound optimization.
+
+4. **ε-Greedy**:
+   - **Total Fraction Correct:** Ranges between 0.64 and 0.65 across runs  
+   - **Performance Insight:** The **ε-Greedy** strategy introduces randomness to balance exploration and exploitation. It converges to similar performance as LinUCB, though it may be less efficient in exploration.
+
+5. **Thompson Sampling**:
+   - **Total Fraction Correct:** Ranges between 0.64 and 0.66 across runs  
+   - **Performance Insight:** **Thompson Sampling** uses Bayesian inference, producing slightly different outcomes on each run due to random sampling. It performs comparably to LinUCB and ε-Greedy, demonstrating strong exploration capabilities.
+
+---
+
+### **What Does This Mean?**
+
+1. **Deterministic vs. Stochastic Models**:  
+   - **Fixed** and **Clinical** models produce consistent results across runs because they lack stochastic exploration. While **Clinical** performs better than **Fixed**, it is still limited in adaptability.
+   - In contrast, **LinUCB**, **Thompson Sampling**, and **ε-Greedy** exhibit random variations but converge to similar high performance.
+
+2. **Exploration Matters**:  
+   - Stochastic models outperform deterministic ones because they continually explore and adapt to new data. This is especially important in dynamic environments like medical dosing, where patient characteristics vary widely.
+
+3. **Fixed Model's Weakness**:  
+   - The consistently low performance of the **Fixed** model highlights the importance of personalized dosing strategies in reducing incorrect outcomes.
+
+---
+
 ## Key Insights
 
 - In medical dosing, even small improvements in prediction accuracy can significantly reduce adverse effects.
